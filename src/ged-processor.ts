@@ -148,7 +148,7 @@ export async function processGed(pathToGed: string): Promise<FamilyTree> {
       })
       .filter((x) => !!x)
       .map((individual) => {
-        return individual.Surname;
+        return individual.Surname || '[Unknown Surname]';
       })
       .join(" and ");
   };
