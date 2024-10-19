@@ -31,7 +31,7 @@
 
         @page {
             @top-center {
-                content: {{family_tree_name}}{{generated_date}};
+                content: '{{family_tree_name}} - {{generated_date}}';
             }
 
             @bottom-center {
@@ -77,12 +77,11 @@
                                     <p class="focused_individual full_name_aka">aka {{this}}</p>
                                 {{/if}}
                             {{/each}}
-                            {{#if this.birth}}
-                                <p class="focused_individual individual_birth">Birth: {{this.birth.date}}
-                                    at {{this.birth.location}}</p>
-                            {{/if}}
+                            <p class="focused_individual individual_birth"><strong>Sex</strong>: {{this.sex}}. {{#if this.birth}}<strong>Birth</strong>: {{this.birth.date}}
+                                at {{this.birth.location}}{{/if}}</p>
+
                             {{#if this.death}}
-                                <p class="focused_individual individual_death">Death: {{this.death.date}}
+                                <p class="focused_individual individual_death"><strong>Death</strong>: {{this.death.date}}
                                     at {{this.death.location}}</p>
                             {{/if}}
 
@@ -171,8 +170,7 @@
                         <h2>Families</h2>
                         {{#each families}}
                             <div class="family" style="break-inside: avoid">
-                                <h3 class="focused_individual position_in_family">{{this.family_id}}
-                                    : {{this.family_name}}</h3>
+                                <h3 class="focused_individual position_in_family">{{this.family_id}}: {{this.family_name}}</h3>
                                 <h4>Positions</h4>
                                 <ul>
                                     {{#each this.positions}}
