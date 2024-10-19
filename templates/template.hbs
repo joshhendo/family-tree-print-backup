@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{family_tree_name}}</title>
+    <script src="./node_modules/pagedjs/dist/paged.polyfill.js"></script>
+    <style>
+        {{{css_reset}}}
+
+        {{{css}}}
+
+        @page {
+            @top-center {
+                content: '{{family_tree_name}} - {{generated_date}}';
+            }
+
+            @bottom-center {
+                content: 'Page ' counter(page) ' of ' counter(pages);
+            }
+
+            size: A4;
+            margin: 15mm 10mm 15mm 10mm; /* top, right, bottom, left */
+        }
+    </style>
+</head>
+<body>
+
+<h1>{{family_tree_name}}</h1>
+<p>Generated {{generated_date}}</p>
+<p>This lists all the individuals, with families that they are part of. Each individual has a unique identifier. If the identifier in a family matches the identifier for an individual, that is the same person. This hard copy backup is designed to allow for a reconstruction of the family tree.</p>
+
+<div class="people_list">
+    <h2>Individuals</h2>
+{{#each individuals}}
+    <div class="individual" style="break-inside: avoid">
+        {{#each this.names}}
+            {{#if @first}}
+                <h3 class="focused_individual full_name">{{../this.individual_id}}: {{this}}</h3>
+            {{else}}
+                <p class="focused_individual full_name_aka">aka {{this}}</p>
+            {{/if}}
+        {{/each}}
+        {{#if this.birth}}
+            <p class="focused_individual individual_birth">Birth: {{this.birth.date}} at {{this.birth.location}}</p>
+        {{/if}}
+        {{#if this.death}}
+            <p class="focused_individual individual_death">Death: {{this.death.date}} at {{this.death.location}}</p>
+        {{/if}}
+
+        <div class="families">
+            <h4>Families</h4>
+            {{#each this.families}}
+                <div class="family">
+                    <h5 class="focused_individual position_in_family">{{this.family_id}}: {{this.family_name}} as {{this.position_of_individual}}</h5>
+                    {{#if ../../this.options.family_inline}}
+                        <h6>Positions</h6>
+                        <ul class="position_list">
+                        {{#each this.positions}}
+                            <li>
+                                <p class="family_position">{{this.name}}: </p>
+
+                                {{#if this.individuals.[1]}}
+                                    <ul>
+                                        {{#each this.individuals}}
+                                            <li>
+                                                {{#each this.names}}
+                                                    {{#if @first}}
+                                                        <p class="individual_in_family full_name">{{this}}</p>
+                                                    {{else}}
+                                                        <p class="individual_in_family full_name_aka">aka {{this}}</p>
+                                                    {{/if}}
+                                                {{/each}}
+                                                <p class="individual_in_family individual_id">{{this.individual_id}}</p>
+                                            </li>
+                                        {{/each}}
+                                    </ul>
+                                    {{else}}
+                                    {{#each this.individuals.0.names}}
+                                        {{#if @first}}
+                                            <p class="individual_in_family full_name">{{this}}</p>
+                                        {{else}}
+                                            <p class="individual_in_family full_name_aka">aka {{this}}</p>
+                                        {{/if}}
+                                    {{/each}}
+                                {{/if}}
+                            </li>
+                        {{/each}}
+                        </ul>
+                        {{#if this.descriptions}}                        <!-- render this block when the array has at least one item -->
+                            <h6 class="family_description_title">Descriptions of Family</h6>
+                            <ul class="description_list">
+                                {{#each this.descriptions}}
+                                    <li><p class="family_description">{{this}}</p></li>
+                                {{/each}}
+                            </ul>
+                        {{/if}}
+                    {{/if}}
+                </div>
+            {{/each}}
+        </div>
+
+    </div>
+{{/each}}
+</div>
+
+{{#if options.family_section}}
+    <div class="family_list">
+        <h2>Families</h2>
+        {{#each families}}
+        <div class="family" style="break-inside: avoid">
+            <h3 class="focused_individual position_in_family">{{this.family_id}}: {{this.family_name}}</h3>
+                <h4>Positions</h4>
+                <ul>
+                {{#each this.positions}}
+                    <li>
+                        <p class="family_position">{{this.name}}: </p>
+
+                        {{#if this.individuals.[1]}}
+                            <ul class="position_list">
+                                {{#each this.individuals}}
+                                    <li>
+                                        {{#each this.names}}
+                                            {{#if @first}}
+                                                <p class="individual_in_family full_name">{{this}}</p>
+                                            {{else}}
+                                                <p class="individual_in_family full_name_aka">aka {{this}}</p>
+                                            {{/if}}
+                                        {{/each}}
+                                        <p class="individual_in_family individual_id">{{this.individual_id}}</p>
+                                    </li>
+                                {{/each}}
+                            </ul>
+                        {{else}}
+                            {{#each this.individuals.0.names}}
+                                {{#if @first}}
+                                    <p class="individual_in_family full_name">{{this}}</p>
+                                {{else}}
+                                    <p class="individual_in_family full_name_aka">aka {{this}}</p>
+                                {{/if}}
+                            {{/each}}
+                        {{/if}}
+                    </li>
+                {{/each}}
+            </ul>
+            {{#if this.descriptions}}                        <!-- render this block when the array has at least one item -->
+                <h4 class="family_description_title">Descriptions of Family</h4>
+                <ul class="description_list">
+                    {{#each this.descriptions}}
+                        <li><p class="family_description">{{this}}</p></li>
+                    {{/each}}
+                </ul>
+            {{/if}}
+        </div>
+    {{/each}}
+    </div>
+{{/if}}
+
+
+</body>
+</html>

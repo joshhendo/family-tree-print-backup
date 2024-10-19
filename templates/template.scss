@@ -1,0 +1,115 @@
+body {
+  font-size-adjust: 0.4;
+  font-family: Verdana, serif;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.focused_individual.full_name_aka {
+  display: inline;
+}
+
+.focused_individual.individual_id:before {
+  content: "Individual ID: ";
+}
+
+.focused_individual.family_id:before {
+  content: "Family ID: ";
+}
+
+.individual_in_family.full_name {
+  display: inline;
+}
+
+.full_name_aka {
+  display: inline;
+}
+
+.individual_in_family.individual_id {
+  display: inline;
+}
+
+.individual_in_family.individual_id:before {
+  content: "(Individual ID: ";
+}
+
+.individual_in_family.individual_id:after {
+  content: ")";
+}
+
+.family_position {
+  display: inline;
+}
+
+table.report-container {
+  page-break-after: always;
+}
+
+thead.report-header {
+  display: table-header-group;
+}
+
+tfoot.report-footer {
+  display: table-footer-group;
+}
+
+.header-info {
+  font-family: Verdana, serif;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 0.1em;
+  margin-top: 0.1em;
+}
+
+h2 {
+  font-size: 1.6em;
+  margin-bottom: 0.1em;
+  margin-top: 0.1em;
+  font-weight: bold;
+}
+
+h3 {
+  margin-top: 0.4em;
+  font-size: 1.45em;
+  font-weight: bold;
+}
+
+h4 {
+  margin-top: 0.1em;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+h5 {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+h6 {
+  font-size: 1em;
+  margin-left: 13px;
+  font-weight: bold;
+}
+
+ul {
+  list-style: disc;
+}
+
+ul li {
+  list-style: disc;
+  margin-left: 10px;
+}
+
+.position_list {
+  margin-left: 20px;
+}
+
+.description_list {
+  margin-left: 20px;
+}
