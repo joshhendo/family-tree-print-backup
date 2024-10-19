@@ -77,12 +77,11 @@
                                     <p class="focused_individual full_name_aka">aka {{this}}</p>
                                 {{/if}}
                             {{/each}}
-                            {{#if this.birth}}
-                                <p class="focused_individual individual_birth">Birth: {{this.birth.date}}
-                                    at {{this.birth.location}}</p>
-                            {{/if}}
+                            <p class="focused_individual individual_birth"><strong>Sex</strong>: {{this.sex}}. {{#if this.birth}}<strong>Birth</strong>: {{this.birth.date}}
+                                at {{this.birth.location}}{{/if}}</p>
+
                             {{#if this.death}}
-                                <p class="focused_individual individual_death">Death: {{this.death.date}}
+                                <p class="focused_individual individual_death"><strong>Death</strong>: {{this.death.date}}
                                     at {{this.death.location}}</p>
                             {{/if}}
 

@@ -30,6 +30,7 @@ interface EventInfo {
 interface Individual extends IndividualInFamily {
   birth?: EventInfo;
   death?: EventInfo;
+  sex?: string;
   families: FamilyInIndividual[];
 }
 
@@ -170,6 +171,22 @@ export async function processGed(pathToGed: string): Promise<FamilyTree> {
     return _.uniq(names);
   };
 
+  const getIndividualSex = (individual: any) => {
+    if (!individual.Sex || typeof individual.Sex !== 'string') {
+      return 'Unknown';
+    }
+
+    if (individual.Sex.toUpperCase() === 'M') {
+      return 'Male';
+    }
+
+    if (individual.Sex.toUpperCase() === 'F') {
+      return 'Female';
+    }
+
+    return individual.Sex;
+  }
+
   for (const relation of relations) {
     const familyResult: Family = {
       family_id: getSimplifiedFamilyId(relation.Id),
@@ -231,6 +248,8 @@ export async function processGed(pathToGed: string): Promise<FamilyTree> {
         location: individual.Death?.Place ?? "Unknown",
       };
     }
+
+    individualResult.sex = getIndividualSex(individual);
 
     const relations = getItemAsArray(individual.Relations);
     for (const relationId of relations) {
