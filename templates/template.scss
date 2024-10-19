@@ -3,9 +3,14 @@ body {
   font-family: Verdana, serif;
 }
 
-p {
+.general-info {
   margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  margin-bttom: 0.5em;
+}
+
+p {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
 }
 
 .focused_individual.full_name_aka {
@@ -75,7 +80,7 @@ h2 {
 
 h3 {
   margin-top: 0.4em;
-  font-size: 1.45em;
+  font-size: 1.4em;
   font-weight: bold;
 }
 
@@ -112,4 +117,16 @@ ul li {
 
 .description_list {
   margin-left: 20px;
+}
+
+table.section-container {
+  page-break-after:always;
+}
+thead.section-header {
+  display:table-header-group;
+}
+
+.repeatable {
+  display: block;
+  position: running(repeatable);
 }

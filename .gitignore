@@ -134,3 +134,4 @@ output.html
 
 *.js
 *.js.map
+!lib/pagedjs-repeat-table-header.js
